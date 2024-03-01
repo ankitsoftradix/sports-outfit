@@ -3,7 +3,7 @@ import { create } from "zustand";
 export const useBearStore = create((set) => ({
   colorPickerList: [
     { id: 1, name: "Shirt Color", color: "#fff" },
-    { id: 2, name: "Tie Color", color: "#228b22" },
+    { id: 2, name: "Tie Color", color: "#FFBF00" },
     { id: 3, name: "Pallets Color", color: "#fff" },
   ],
   updateColor: (updatedId, updatedColor) =>
