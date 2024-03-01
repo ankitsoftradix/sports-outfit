@@ -19,8 +19,8 @@ const Model = (props) => {
   const colorPickerList = useBearStore((state) => state.colorPickerList);
 
   useEffect(() => {
-    const tieColor = colorPickerList[0].color;
-    const shirtColor = colorPickerList[1].color;
+    const shirtColor = colorPickerList[0].color;
+    const tieColor = colorPickerList[1].color;
     const palletsColor = colorPickerList[2].color;
     tieRef.current.material.color = new Color(tieColor);
     shirtRef.current.material.color = new Color(shirtColor);
@@ -30,7 +30,7 @@ const Model = (props) => {
   return (
     <Suspense>
       <ambientLight intensity={3} />
-      <directionalLight intensity={2} />
+      <directionalLight />
       <group {...props} dispose={null} position={[0, -4, 0]} scale={0.7}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
