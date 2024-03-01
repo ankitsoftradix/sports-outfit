@@ -1,3 +1,5 @@
+@import "/src/scss/var";
+
 .mainWrap {
   display: flex;
   height: 100vh;
@@ -6,14 +8,14 @@
 .topBar {
   flex-direction: column;
   justify-content: flex-start;
-  border-right: 1px solid #ababab54;
+  border-right: 1px solid $border-color;
   height: 100%;
   :global {
     .nav-link {
       padding: 10px 30px;
       border-radius: 0px !important;
       background-color: rgb(0 135 255 / 11%);
-      border-bottom: 1px solid #ababab54;
+      border-bottom: 1px solid $border-color;
     }
   }
 }
