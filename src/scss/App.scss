@@ -11,11 +11,12 @@ body {
 }
 
 .sidebar {
-  flex-basis: 40%;
-  border-right: 1px solid gray;
+  flex-basis: 30%;
+  border-right: 1px solid #ababab54;
 }
 
 .content {
-  flex-basis: 60%;
+  flex-basis: 70%;
   @include flexCenter;
+  background-color: #bed8ff14;
 }
