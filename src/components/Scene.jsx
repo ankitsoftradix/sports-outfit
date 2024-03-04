@@ -6,7 +6,7 @@ const Scene = () => {
   return (
     <Canvas
       camera={{
-        position: [0, 1, 2.8],
+        position: [0, 1, 2],
       }}
     >
       <Model />
