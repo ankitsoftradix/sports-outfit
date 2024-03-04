@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Model from "./Model";
 
@@ -9,9 +9,15 @@ const Scene = () => {
         position: [0, 1, 2],
       }}
     >
+      <color attach="background" args={["#f0f0f0"]} />
       <Model />
-      <OrbitControls minPolarAngle={0.8} maxPolarAngle={1.3} />
+      <OrbitControls
+        minPolarAngle={0.8}
+        maxPolarAngle={1.3}
+        enableZoom={false}
+      />
       {/* <Grid position={[0, -0.01, 0]} args={[15, 15]} /> */}
+      <Environment preset="city" />
     </Canvas>
   );
 };

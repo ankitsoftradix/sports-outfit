@@ -29,8 +29,7 @@ const Model = (props) => {
 
   return (
     <Suspense>
-      <ambientLight intensity={3} />
-      <directionalLight />
+      <ambientLight />
       <group {...props} dispose={null} position={[0, -4, 0]} scale={0.7}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh

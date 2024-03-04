@@ -2,6 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import styles from "./Sidebar.module.scss";
 import Color from "../Tabs/Color";
+import Text from "../Tabs/Text";
 
 const Sidebar = () => {
   return (
@@ -29,7 +30,9 @@ const Sidebar = () => {
             <Tab.Pane eventKey="second">
               <Color />
             </Tab.Pane>
-            <Tab.Pane eventKey="third">Text tab</Tab.Pane>
+            <Tab.Pane eventKey="third">
+              <Text />
+            </Tab.Pane>
             <Tab.Pane eventKey="forth">Logo tab</Tab.Pane>
           </Tab.Content>
         </div>
