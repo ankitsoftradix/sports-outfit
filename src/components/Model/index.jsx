@@ -30,6 +30,7 @@ const Model = (props) => {
   return (
     <Suspense>
       <ambientLight />
+      <directionalLight />
       <group {...props} dispose={null} position={[0, -4, 0]} scale={0.7}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
@@ -46,7 +47,9 @@ const Model = (props) => {
             ref={tieRef}
             geometry={nodes.Object_4.geometry}
             material={tieMaterial}
-          />
+          >
+            <meshStandardMaterial />
+          </mesh>
         </group>
       </group>
     </Suspense>

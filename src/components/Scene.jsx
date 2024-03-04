@@ -9,7 +9,6 @@ const Scene = () => {
         position: [0, 1, 2],
       }}
     >
-      <color attach="background" args={["#f0f0f0"]} />
       <Model />
       <OrbitControls
         minPolarAngle={0.8}
