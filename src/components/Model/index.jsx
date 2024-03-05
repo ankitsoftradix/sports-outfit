@@ -1,6 +1,7 @@
-import { useGLTF } from "@react-three/drei";
+import { Decal, useGLTF } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef } from "react";
-import { Color } from "three";
+import { Color, TextureLoader } from "three";
 import { useBearStore } from "../../store";
 
 const Model = (props) => {
@@ -8,6 +9,8 @@ const Model = (props) => {
   const shirtRef = useRef();
   const palletsRef = useRef();
   const { nodes, materials } = useGLTF("./models/t-shirt.glb");
+  const texture = useLoader(TextureLoader, "./textures/2.png");
+  console.log("texture ==> ", texture);
 
   const tieMaterial = useMemo(() => {
     return materials.material_0.clone();
@@ -30,7 +33,6 @@ const Model = (props) => {
   return (
     <Suspense>
       <ambientLight />
-      <directionalLight />
       <group {...props} dispose={null} position={[0, -4, 0]} scale={0.7}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
@@ -42,7 +44,20 @@ const Model = (props) => {
             ref={shirtRef}
             geometry={nodes.Object_3.geometry}
             material={shirtMaterial}
-          />
+          >
+            <Decal
+              debug
+              position={[-0.35, -0.4, 6]}
+              scale={0.3}
+              rotation={[0, 0, 0]}
+            >
+              <meshBasicMaterial
+                map={texture}
+                polygonOffset
+                polygonOffsetFactor={-1}
+              />
+            </Decal>
+          </mesh>
           <mesh
             ref={tieRef}
             geometry={nodes.Object_4.geometry}
