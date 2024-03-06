@@ -15,7 +15,7 @@ const Scene = () => {
       // maxPolarAngle={1.3}
       // enableZoom={false}
       />
-      <Grid position={[0, -0.01, 0]} args={[15, 15]} />
+      {/* <Grid position={[0, -0.01, 0]} args={[15, 15]} /> */}
       <Environment preset="city" />
     </Canvas>
   );

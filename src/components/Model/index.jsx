@@ -1,4 +1,4 @@
-import { Decal, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Color, TextureLoader } from "three";
@@ -44,20 +44,7 @@ const Model = (props) => {
             ref={shirtRef}
             geometry={nodes.Object_3.geometry}
             material={shirtMaterial}
-          >
-            <Decal
-              debug
-              position={[-0.35, -0.4, 6]}
-              scale={0.3}
-              rotation={[0, 0, 0]}
-            >
-              <meshBasicMaterial
-                map={texture}
-                polygonOffset
-                polygonOffsetFactor={-1}
-              />
-            </Decal>
-          </mesh>
+          />
           <mesh
             ref={tieRef}
             geometry={nodes.Object_4.geometry}
