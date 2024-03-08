@@ -1,16 +1,31 @@
 import { useGLTF } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef } from "react";
-import { Color, TextureLoader } from "three";
+import {
+  CanvasTexture,
+  Color,
+  DoubleSide,
+  Texture,
+  TextureLoader,
+} from "three";
 import { useBearStore } from "../../store";
+import { useLoader } from "@react-three/fiber";
 
 const Model = (props) => {
   const tieRef = useRef();
   const shirtRef = useRef();
   const palletsRef = useRef();
   const { nodes, materials } = useGLTF("./models/t-shirt.glb");
-  const texture = useLoader(TextureLoader, "./textures/2.png");
+  // const texture = useLoader(
+  //   TextureLoader,
+  //   document.getElementById("shirtCanvas")
+  // );
+  const texture = new CanvasTexture(document.getElementById("shirtCanvas"));
   console.log("texture ==> ", texture);
+
+  // console.log(
+  //   "--------------------------------> ",
+  //   document.getElementById("shirtCanvas")
+  // );
 
   const tieMaterial = useMemo(() => {
     return materials.material_0.clone();
@@ -44,7 +59,9 @@ const Model = (props) => {
             ref={shirtRef}
             geometry={nodes.Object_3.geometry}
             material={shirtMaterial}
-          />
+          >
+            <meshBasicMaterial map={texture} side={DoubleSide} />
+          </mesh>
           <mesh
             ref={tieRef}
             geometry={nodes.Object_4.geometry}
