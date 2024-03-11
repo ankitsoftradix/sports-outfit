@@ -1,5 +1,4 @@
 import { useBearStore } from "../../../store";
-import ShirtCanvas from "../../ShirtCanvas";
 import styles from "./Color.module.scss";
 import Picker from "./Picker";
 
@@ -17,9 +16,6 @@ const Color = () => {
           color={item.color}
         />
       ))}
-      <div className={styles.canvasDiv}>
-        <ShirtCanvas />
-      </div>
     </div>
   );
 };
