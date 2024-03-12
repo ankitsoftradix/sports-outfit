@@ -1,9 +1,9 @@
-import { useBearStore } from "../../../store";
+import { useColorStore } from "../../../store";
 import styles from "./Color.module.scss";
 import Picker from "./Picker";
 
 const Color = () => {
-  const colorPickerList = useBearStore((state) => state.colorPickerList);
+  const colorPickerList = useColorStore((state) => state.colorPickerList);
 
   return (
     <div className={styles.main}>

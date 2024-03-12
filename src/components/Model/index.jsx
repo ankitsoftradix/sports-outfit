@@ -1,17 +1,15 @@
-import { useGLTF } from "@react-three/drei";
+import { Decal, useGLTF, useTexture } from "@react-three/drei";
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Color } from "three";
-import { useBearStore } from "../../store";
+import { useColorStore, useLogoStore } from "../../store";
 
 const Model = (props) => {
   const tieRef = useRef();
   const shirtRef = useRef();
   const palletsRef = useRef();
   const { nodes, materials } = useGLTF("./models/t-shirt.glb");
-  // const texture = useLoader(
-  //   TextureLoader,
-  //   document.getElementById("shirtCanvas")
-  // );
+  const image = useLogoStore((state) => state?.logo || "");
+  const imageTexture = useTexture(image || "./textures/2.png");
 
   const tieMaterial = useMemo(() => {
     return materials.material_0.clone();
@@ -20,7 +18,7 @@ const Model = (props) => {
     return materials.material_0.clone();
   }, [materials]);
 
-  const colorPickerList = useBearStore((state) => state.colorPickerList);
+  const colorPickerList = useColorStore((state) => state.colorPickerList);
 
   useEffect(() => {
     const shirtColor = colorPickerList[0].color;
@@ -45,7 +43,19 @@ const Model = (props) => {
             ref={shirtRef}
             geometry={nodes.Object_3.geometry}
             material={shirtMaterial}
-          />
+            material-aoMapIntensity={1}
+            dispose={null}
+          >
+            {image && (
+              <Decal
+                scale={0.7}
+                debug={false}
+                position={[0, -0.4, 6.05]}
+                rotation={[1.5, 0, 0]}
+                map={imageTexture}
+              />
+            )}
+          </mesh>
 
           <mesh
             ref={tieRef}
