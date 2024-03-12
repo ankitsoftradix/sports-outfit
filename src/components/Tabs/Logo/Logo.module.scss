@@ -1,0 +1,27 @@
+@import "/src/scss/var.scss";
+
+.heading {
+  font-size: 24px;
+  color: $text-color;
+  border-bottom: 1px solid $border-color;
+  padding: 1rem;
+}
+
+.selectedImg {
+  max-height: 200px;
+  max-width: 200px;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.imageWrap {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    height: 40px;
+    border-radius: 8px;
+    margin: 10px;
+    width: 200px;
+  }
+}

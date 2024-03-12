@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import ClickAwayListener from "../../ClickAwayListener";
 import styles from "./Color.module.scss";
-import { useBearStore } from "../../../store";
+import { useColorStore } from "../../../store";
 
 const Picker = (props) => {
   const { id, name, color } = props;
@@ -11,7 +11,7 @@ const Picker = (props) => {
   const [showPicker, setShowPicker] = useState(false);
   const togglePicker = () => setShowPicker(!showPicker);
 
-  const updateColor = useBearStore((state) => state.updateColor);
+  const updateColor = useColorStore((state) => state.updateColor);
 
   useEffect(() => {
     const timer = setTimeout(() => {

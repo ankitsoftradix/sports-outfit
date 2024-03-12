@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
-export const useBearStore = create((set) => ({
+export const useColorStore = create((set) => ({
   colorPickerList: [
     { id: 1, name: "Shirt Color", color: "#fff" },
-    { id: 2, name: "Tie Color", color: "#FFBF00" },
+    { id: 2, name: "Tie Color", color: "#1434A4" },
     { id: 3, name: "Pallets Color", color: "#fff" },
   ],
   updateColor: (updatedId, updatedColor) =>
@@ -11,5 +11,13 @@ export const useBearStore = create((set) => ({
       colorPickerList: state.colorPickerList.map((item) => {
         return item.id === updatedId ? { ...item, color: updatedColor } : item;
       }),
+    })),
+}));
+
+export const useLogoStore = create((set) => ({
+  logo: null,
+  updateLogo: (imageFile) =>
+    set(() => ({
+      logo: imageFile ? URL.createObjectURL(imageFile) : null,
     })),
 }));
