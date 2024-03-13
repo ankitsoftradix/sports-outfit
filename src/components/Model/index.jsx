@@ -73,7 +73,7 @@ const Model = (props) => {
               <Decal
                 {...bind()}
                 scale={[0.7, 0.7, 1]}
-                debug={true}
+                // debug={true}
                 position={position}
                 rotation={rotation}
                 map={imageTexture}
