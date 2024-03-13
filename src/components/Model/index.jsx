@@ -1,7 +1,8 @@
 import { Decal, useGLTF, useTexture } from "@react-three/drei";
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Color } from "three";
 import { useColorStore, useLogoStore } from "../../store";
+import { useDrag } from "react-use-gesture";
 
 const Model = (props) => {
   const tieRef = useRef();
@@ -29,6 +30,28 @@ const Model = (props) => {
     palletsRef.current.material.color = new Color(palletsColor);
   }, [colorPickerList]);
 
+  // const [position, setPosition] = useState([0, -0.4, 6.05]);
+  const [position, setPosition] = useState([0, -0.2, 6.05]);
+  const [rotation, setRotation] = useState([1.5, 0, 0]);
+
+  const bind = useDrag(
+    ({ offset: [x] }) => {
+      const xPos = x * 0.01;
+      const finalPosition = [xPos, position[1], position[2]];
+      const rotationPosition = [rotation[0], xPos, rotation[2]];
+      console.log("finalPosition ==> ", finalPosition);
+      console.log("rotationPosition ==> ", rotationPosition);
+
+      setRotation(rotationPosition);
+      setPosition(finalPosition);
+    },
+    { pointerEvents: true }
+  );
+
+  // useEffect(() => {
+  //   console.log("position ==> ", position);
+  // }, [position]);
+
   return (
     <Suspense>
       <ambientLight />
@@ -48,11 +71,13 @@ const Model = (props) => {
           >
             {image && (
               <Decal
-                scale={0.7}
+                {...bind()}
+                scale={[0.7, 0.7, 1]}
                 debug={true}
-                position={[0, -0.4, 6.05]}
-                rotation={[1.5, 0, 0]}
+                position={position}
+                rotation={rotation}
                 map={imageTexture}
+                origin={[0, 0, 0]}
               />
             )}
           </mesh>
