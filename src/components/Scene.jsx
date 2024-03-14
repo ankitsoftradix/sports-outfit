@@ -1,4 +1,4 @@
-import { Environment, Grid } from "@react-three/drei";
+import { Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Model from "./Model";
 
@@ -11,7 +11,7 @@ const Scene = () => {
     >
       <Model />
 
-      <Grid position={[0, -0.01, 0]} args={[15, 15]} />
+      {/* <Grid position={[0, -0.01, 0]} args={[15, 15]} /> */}
       <Environment preset="city" />
     </Canvas>
   );
