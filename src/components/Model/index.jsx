@@ -1,4 +1,10 @@
-import { Decal, OrbitControls, useGLTF, useTexture } from "@react-three/drei";
+import {
+  Decal,
+  OrbitControls,
+  useCursor,
+  useGLTF,
+  useTexture,
+} from "@react-three/drei";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Color } from "three";
 import { useColorStore, useLogoStore } from "../../store";
@@ -21,6 +27,10 @@ const Model = (props) => {
     return materials.material_0.clone();
   }, [materials]);
 
+  const [hovered, setHovered] = useState(false);
+  const toggleHovered = () => setHovered(!hovered);
+  useCursor(hovered, "grab");
+
   const colorPickerList = useColorStore((state) => state.colorPickerList);
 
   useEffect(() => {
@@ -39,6 +49,7 @@ const Model = (props) => {
   const bind = useDrag(
     ({ offset: [x, y], down }) => {
       orbitRef.current.enabled = !down;
+      orbitRef.current.cursor = "pointer";
 
       const xPos =
         x * 0.005 > -0.8 && x * 0.005 < 0.8 ? x * 0.005 : position[0];
@@ -81,6 +92,9 @@ const Model = (props) => {
           >
             {image && (
               <Decal
+                style={{ cursor: "pointer" }}
+                onPointerEnter={toggleHovered}
+                onPointerLeave={toggleHovered}
                 {...bind()}
                 scale={[0.7, 0.7, 1.4]}
                 // debug={true}
