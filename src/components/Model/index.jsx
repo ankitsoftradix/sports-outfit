@@ -33,26 +33,25 @@ const Model = (props) => {
   }, [colorPickerList]);
 
   // const [position, setPosition] = useState([0, -0.4, 6.05]);
-  const [position, setPosition] = useState([0, -0.4, 6.05]);
+  const [position, setPosition] = useState([0, -0.5, 6.05]);
   const [rotation, setRotation] = useState([1.5, 0, 0]);
 
   const bind = useDrag(
-    ({ offset: [x], down }) => {
+    ({ offset: [x, y], down }) => {
       orbitRef.current.enabled = !down;
 
-      const xPos = x * 0.01;
-      const finalPosition = [xPos, position[1], position[2]];
+      const xPos =
+        x * 0.005 > -0.8 && x * 0.005 < 0.8 ? x * 0.005 : position[0];
+      const zPos =
+        6.05 - y * 0.005 < 6.8 && 6.05 - y * 0.005 > 4.8
+          ? 6.05 - y * 0.005
+          : position[2];
+
+      const finalPosition = [xPos, position[1], zPos];
       const rotationPosition = [rotation[0], xPos, rotation[2]];
-      // console.log("finalPosition ==> ", finalPosition);
-      // console.log("rotationPosition ==> ", rotationPosition);
 
       setRotation(rotationPosition);
-      if (xPos > -0.6) {
-        setPosition(finalPosition);
-      }
-      // if (xPos < 0.6) {
-      //   setPosition(finalPosition);
-      // }
+      setPosition(finalPosition);
     },
     { pointerEvents: true }
   );
@@ -83,7 +82,7 @@ const Model = (props) => {
             {image && (
               <Decal
                 {...bind()}
-                scale={[0.7, 0.7, 1]}
+                scale={[0.7, 0.7, 1.4]}
                 debug={true}
                 position={position}
                 rotation={rotation}
