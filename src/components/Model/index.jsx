@@ -33,7 +33,7 @@ const Model = (props) => {
   }, [colorPickerList]);
 
   // const [position, setPosition] = useState([0, -0.4, 6.05]);
-  const [position, setPosition] = useState([0, -0.5, 6.05]);
+  const [position, setPosition] = useState([0, -0.4, 6.05]);
   const [rotation, setRotation] = useState([1.5, 0, 0]);
 
   const bind = useDrag(
@@ -84,7 +84,6 @@ const Model = (props) => {
                 {...bind()}
                 scale={[0.7, 0.7, 1.4]}
                 // debug={true}
-
                 position={position}
                 rotation={rotation}
                 map={imageTexture}
