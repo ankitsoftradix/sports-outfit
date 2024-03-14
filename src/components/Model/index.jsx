@@ -1,4 +1,4 @@
-import { Decal, useGLTF, useTexture } from "@react-three/drei";
+import { Decal, OrbitControls, useGLTF, useTexture } from "@react-three/drei";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Color } from "three";
 import { useColorStore, useLogoStore } from "../../store";
@@ -8,6 +8,8 @@ const Model = (props) => {
   const tieRef = useRef();
   const shirtRef = useRef();
   const palletsRef = useRef();
+  const orbitRef = useRef();
+
   const { nodes, materials } = useGLTF("./models/t-shirt.glb");
   const image = useLogoStore((state) => state?.logo || "");
   const imageTexture = useTexture(image || "./textures/2.png");
@@ -31,30 +33,39 @@ const Model = (props) => {
   }, [colorPickerList]);
 
   // const [position, setPosition] = useState([0, -0.4, 6.05]);
-  const [position, setPosition] = useState([0, -0.2, 6.05]);
+  const [position, setPosition] = useState([0, -0.4, 6.05]);
   const [rotation, setRotation] = useState([1.5, 0, 0]);
 
   const bind = useDrag(
-    ({ offset: [x] }) => {
+    ({ offset: [x], down }) => {
+      orbitRef.current.enabled = !down;
+
       const xPos = x * 0.01;
       const finalPosition = [xPos, position[1], position[2]];
       const rotationPosition = [rotation[0], xPos, rotation[2]];
-      console.log("finalPosition ==> ", finalPosition);
-      console.log("rotationPosition ==> ", rotationPosition);
+      // console.log("finalPosition ==> ", finalPosition);
+      // console.log("rotationPosition ==> ", rotationPosition);
 
       setRotation(rotationPosition);
-      setPosition(finalPosition);
+      if (xPos > -0.6) {
+        setPosition(finalPosition);
+      }
+      // if (xPos < 0.6) {
+      //   setPosition(finalPosition);
+      // }
     },
     { pointerEvents: true }
   );
 
-  // useEffect(() => {
-  //   console.log("position ==> ", position);
-  // }, [position]);
-
   return (
     <Suspense>
       <ambientLight />
+      <OrbitControls
+        ref={orbitRef}
+        // minPolarAngle={0.8}
+        // maxPolarAngle={1.3}
+        // enableZoom={false}
+      />
       <group {...props} dispose={null} position={[0, -4, 0]} scale={0.7}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
@@ -73,7 +84,7 @@ const Model = (props) => {
               <Decal
                 {...bind()}
                 scale={[0.7, 0.7, 1]}
-                // debug={true}
+                debug={true}
                 position={position}
                 rotation={rotation}
                 map={imageTexture}
