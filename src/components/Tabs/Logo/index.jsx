@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 import { useLogoStore } from "../../../store";
 import styles from "./Logo.module.scss";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const baseStyle = {
   flex: 1,
@@ -34,7 +36,9 @@ const rejectStyle = {
 };
 
 const Logo = () => {
-  const { logo, updateLogo } = useLogoStore((state) => state);
+  const { logo, updateLogo, scale, updateScale } = useLogoStore(
+    (state) => state
+  );
 
   const onDropAccepted = (acceptedFiles) => {
     updateLogo(acceptedFiles[0]);
@@ -65,6 +69,16 @@ const Logo = () => {
       {logo && (
         <div className={styles.imageWrap}>
           <img src={logo} alt="" className={styles.selectedImg} />
+          <div className={styles.sliderWrap}>
+            <span>Scale</span>
+            <Slider
+              min={0.3}
+              max={1}
+              step={0.01}
+              value={scale}
+              onChange={(e) => updateScale(e)}
+            />
+          </div>
           <button onClick={() => updateLogo(null)}>Remove logo</button>
         </div>
       )}
