@@ -1,15 +1,12 @@
 import { Environment, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Circle } from "rc-progress";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import Model from "./Model";
 
 const Scene = () => {
   const { progress } = useProgress();
 
-  useEffect(() => {
-    console.log("progress ==> ", progress);
-  }, [progress]);
   const Loader = () => {
     return (
       <div className="modelLoader">
