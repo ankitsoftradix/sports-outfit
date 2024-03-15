@@ -36,9 +36,8 @@ const rejectStyle = {
 };
 
 const Logo = () => {
-  const { logo, updateLogo, scale, updateScale } = useLogoStore(
-    (state) => state
-  );
+  const { logo, updateLogo, scale, updateScale, rotate, updateRotate } =
+    useLogoStore((state) => state);
 
   const onDropAccepted = (acceptedFiles) => {
     updateLogo(acceptedFiles[0]);
@@ -78,6 +77,20 @@ const Logo = () => {
               value={scale}
               onChange={(e) => updateScale(e)}
             />
+          </div>
+          <div className={styles.sliderWrap}>
+            <span>Rotate</span>
+            <Slider
+              min={0}
+              max={360}
+              step={1}
+              value={rotate}
+              onChange={(e) => updateRotate(e)}
+            />
+            <span>
+              {rotate}
+              <sup>°</sup>
+            </span>
           </div>
           <button onClick={() => updateLogo(null)}>Remove logo</button>
         </div>

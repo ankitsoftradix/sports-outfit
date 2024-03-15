@@ -17,12 +17,17 @@ export const useColorStore = create((set) => ({
 export const useLogoStore = create((set) => ({
   logo: null,
   scale: 0.5,
+  rotate: 0,
   updateLogo: (imageFile) =>
     set(() => ({
       logo: imageFile ? URL.createObjectURL(imageFile) : null,
     })),
   updateScale: (scale) =>
     set(() => ({
-      scale: scale,
+      scale,
+    })),
+  updateRotate: (rotate) =>
+    set(() => ({
+      rotate,
     })),
 }));

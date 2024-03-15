@@ -9,6 +9,7 @@ import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Color } from "three";
 import { useColorStore, useLogoStore } from "../../store";
 import { useDrag } from "react-use-gesture";
+import { degToRad } from "three/src/math/MathUtils";
 
 const Model = (props) => {
   const tieRef = useRef();
@@ -18,10 +19,7 @@ const Model = (props) => {
 
   const { nodes, materials } = useGLTF("./models/t-shirt.glb");
   const image = useLogoStore((state) => state?.logo || "");
-  const scale = useLogoStore((state) => state.scale);
-  useEffect(() => {
-    console.log("scale ==> ", scale);
-  }, [scale]);
+  const { scale, rotate } = useLogoStore((state) => state);
   const imageTexture = useTexture(image || "./textures/2.png");
 
   const tieMaterial = useMemo(() => {
@@ -49,6 +47,10 @@ const Model = (props) => {
   // const [position, setPosition] = useState([0, -0.4, 6.05]);
   const [position, setPosition] = useState([0, -0.4, 6.05]);
   const [rotation, setRotation] = useState([1.5, 0, 0]);
+
+  useEffect(() => {
+    setRotation([1.5, 0, degToRad(rotate)]);
+  }, [rotate]);
 
   const bind = useDrag(
     ({ offset: [x, y], down }) => {
