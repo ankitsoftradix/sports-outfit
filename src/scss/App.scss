@@ -20,3 +20,21 @@ body {
   @include flexCenter;
   background-color: #f0f0f0;
 }
+
+.modelLoader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .innerWrap {
+    height: 200px;
+    width: 200px;
+    position: relative;
+  }
+  .percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
