@@ -92,12 +92,12 @@ const Model = (props) => {
           >
             {image && (
               <Decal
+                {...bind()}
                 style={{ cursor: "pointer" }}
                 onPointerEnter={toggleHovered}
                 onPointerLeave={toggleHovered}
-                {...bind()}
                 scale={[0.7, 0.7, 1.4]}
-                // debug={true}
+                debug={true}
                 position={position}
                 rotation={rotation}
                 map={imageTexture}

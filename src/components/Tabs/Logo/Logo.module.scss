@@ -25,3 +25,14 @@
     width: 200px;
   }
 }
+
+.sliderWrap {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid gray;
+  padding: 10px 15px 10px 10px;
+  border-radius: 8px;
+  box-shadow: $box-shadow;
+}
