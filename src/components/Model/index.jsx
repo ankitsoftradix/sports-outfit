@@ -5,11 +5,11 @@ import {
   useGLTF,
   useTexture,
 } from "@react-three/drei";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { Color } from "three";
-import { useColorStore, useLogoStore } from "../../store";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDrag } from "react-use-gesture";
+import { Color } from "three";
 import { degToRad } from "three/src/math/MathUtils";
+import { useColorStore, useLogoStore } from "../../store";
 
 const Model = (props) => {
   const tieRef = useRef();
@@ -74,7 +74,7 @@ const Model = (props) => {
   );
 
   return (
-    <Suspense>
+    <>
       <ambientLight />
       <OrbitControls
         ref={orbitRef}
@@ -121,7 +121,7 @@ const Model = (props) => {
           </mesh>
         </group>
       </group>
-    </Suspense>
+    </>
   );
 };
 
