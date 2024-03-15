@@ -18,6 +18,10 @@ const Model = (props) => {
 
   const { nodes, materials } = useGLTF("./models/t-shirt.glb");
   const image = useLogoStore((state) => state?.logo || "");
+  const scale = useLogoStore((state) => state.scale);
+  useEffect(() => {
+    console.log("scale ==> ", scale);
+  }, [scale]);
   const imageTexture = useTexture(image || "./textures/2.png");
 
   const tieMaterial = useMemo(() => {
@@ -96,8 +100,8 @@ const Model = (props) => {
                 style={{ cursor: "pointer" }}
                 onPointerEnter={toggleHovered}
                 onPointerLeave={toggleHovered}
-                scale={[0.7, 0.7, 1.4]}
-                debug={true}
+                scale={[scale, scale, 1.4]}
+                // debug={true}
                 position={position}
                 rotation={rotation}
                 map={imageTexture}

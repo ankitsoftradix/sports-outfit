@@ -16,7 +16,7 @@ export const useColorStore = create((set) => ({
 
 export const useLogoStore = create((set) => ({
   logo: null,
-  scale: 50,
+  scale: 0.5,
   updateLogo: (imageFile) =>
     set(() => ({
       logo: imageFile ? URL.createObjectURL(imageFile) : null,

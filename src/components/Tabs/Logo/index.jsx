@@ -71,7 +71,13 @@ const Logo = () => {
           <img src={logo} alt="" className={styles.selectedImg} />
           <div className={styles.sliderWrap}>
             <span>Scale</span>
-            <Slider value={scale} onChange={(e) => updateScale(e)} />
+            <Slider
+              min={0.3}
+              max={1}
+              step={0.01}
+              value={scale}
+              onChange={(e) => updateScale(e)}
+            />
           </div>
           <button onClick={() => updateLogo(null)}>Remove logo</button>
         </div>
