@@ -1,8 +1,9 @@
-import { Environment, useProgress } from "@react-three/drei";
+import { Environment, Grid, useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Circle } from "rc-progress";
 import { Suspense } from "react";
 import Model from "./Model";
+import DressModel from "./Model/DressModel";
 
 const Scene = () => {
   const { progress } = useProgress();
@@ -22,10 +23,11 @@ const Scene = () => {
     <Suspense fallback={<Loader />}>
       <Canvas
         camera={{
-          position: [0, 1, 2],
+          position: [0, 1, 7],
         }}
       >
-        <Model />
+        {/* <Model /> */}
+        <DressModel />
 
         {/* <Grid position={[0, -0.01, 0]} args={[15, 15]} /> */}
         <Environment preset="city" />
