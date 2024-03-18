@@ -6,3 +6,21 @@
   border-bottom: 1px solid $border-color;
   padding: 1rem;
 }
+
+.mainWrap {
+  padding: 10px;
+  .inputField {
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 4px;
+    height: 40px;
+    padding: 2px;
+  }
+  button {
+    height: 40px;
+    border-radius: 4px;
+    width: 200px;
+    margin-top: 15px;
+    border: 1px solid gray;
+  }
+}
