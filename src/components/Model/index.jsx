@@ -1,6 +1,9 @@
 import {
   Decal,
   OrbitControls,
+  PerspectiveCamera,
+  RenderTexture,
+  Text,
   useCursor,
   useGLTF,
   useTexture,
@@ -9,7 +12,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useDrag } from "react-use-gesture";
 import { Color } from "three";
 import { degToRad } from "three/src/math/MathUtils";
-import { useColorStore, useLogoStore } from "../../store";
+import { useColorStore, useLogoStore, useTextStore } from "../../store";
 
 const Model = (props) => {
   const tieRef = useRef();
@@ -73,6 +76,10 @@ const Model = (props) => {
     { pointerEvents: true }
   );
 
+  // Text Properties
+  const { text } = useTextStore();
+  const textDecalRef = useRef();
+
   return (
     <>
       <ambientLight />
@@ -99,7 +106,6 @@ const Model = (props) => {
             {image && (
               <Decal
                 {...bind()}
-                style={{ cursor: "pointer" }}
                 onPointerEnter={toggleHovered}
                 onPointerLeave={toggleHovered}
                 scale={[scale, scale, 1.4]}
@@ -109,6 +115,42 @@ const Model = (props) => {
                 map={imageTexture}
                 origin={[0, 0, 0]}
               />
+            )}
+            {text && (
+              <Decal
+                {...bind()}
+                onPointerEnter={toggleHovered}
+                onPointerLeave={toggleHovered}
+                scale={[scale, 0.2, 1.4]}
+                // debug={true}
+                position={position}
+                rotation={rotation}
+                origin={[0, 0, 0]}
+                ref={textDecalRef}
+              >
+                <meshStandardMaterial
+                  roughness={1}
+                  transparent
+                  polygonOffset
+                  polygonOffsetFactor={-1}
+                >
+                  <RenderTexture attach="map">
+                    <PerspectiveCamera
+                      makeDefault
+                      manual
+                      aspect={0.9 / 0.25}
+                      position={[0, 0, 5]}
+                    />
+                    <color attach="background" args={["#af2040"]} />
+
+                    <ambientLight intensity={Math.PI} />
+                    <directionalLight position={[10, 10, 5]} />
+                    <Text rotation={[0, 0, 0]} fontSize={5} color="black">
+                      {text}
+                    </Text>
+                  </RenderTexture>
+                </meshStandardMaterial>
+              </Decal>
             )}
           </mesh>
 

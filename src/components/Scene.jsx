@@ -23,11 +23,12 @@ const Scene = () => {
     <Suspense fallback={<Loader />}>
       <Canvas
         camera={{
-          position: [0, 1, 7],
+          // position: [0, 1, 7],
+          position: [0, 1, 2],
         }}
       >
-        {/* <Model /> */}
-        <DressModel />
+        <Model />
+        {/* <DressModel /> */}
 
         {/* <Grid position={[0, -0.01, 0]} args={[15, 15]} /> */}
         <Environment preset="city" />

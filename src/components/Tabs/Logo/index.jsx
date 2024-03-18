@@ -37,7 +37,7 @@ const rejectStyle = {
 
 const Logo = () => {
   const { logo, updateLogo, scale, updateScale, rotate, updateRotate } =
-    useLogoStore((state) => state);
+    useLogoStore();
 
   const onDropAccepted = (acceptedFiles) => {
     updateLogo(acceptedFiles[0]);

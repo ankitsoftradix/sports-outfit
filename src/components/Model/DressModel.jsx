@@ -49,7 +49,6 @@ const DressModel = (props) => {
             geometry={nodes.Dress_1Group6254_1.geometry}
             material={materials["Dress_1:Back_Bodice"]}
           />
-
           <mesh
             ref={Front_Bodice_Ref}
             geometry={nodes.Dress_1Group6254_2.geometry}

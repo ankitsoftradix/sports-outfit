@@ -31,3 +31,11 @@ export const useLogoStore = create((set) => ({
       rotate,
     })),
 }));
+
+export const useTextStore = create((set) => ({
+  text: "",
+  updateText: (upcomingTxt) =>
+    set(() => ({
+      text: upcomingTxt,
+    })),
+}));
