@@ -15,7 +15,7 @@ import { degToRad } from "three/src/math/MathUtils";
 import { useColorStore, useLogoStore, useTextStore } from "../../store";
 
 const Model = (props) => {
-  const tieRef = useRef();
+  // const tieRef = useRef();
   const shirtRef = useRef();
   const palletsRef = useRef();
   const orbitRef = useRef();
@@ -25,9 +25,9 @@ const Model = (props) => {
   const { scale, rotate } = useLogoStore((state) => state);
   const imageTexture = useTexture(image || "./textures/2.png");
 
-  const tieMaterial = useMemo(() => {
-    return materials.material_0.clone();
-  }, [materials]);
+  // const tieMaterial = useMemo(() => {
+  //   return materials.material_0.clone();
+  // }, [materials]);
   const shirtMaterial = useMemo(() => {
     return materials.material_0.clone();
   }, [materials]);
@@ -40,15 +40,15 @@ const Model = (props) => {
 
   useEffect(() => {
     const shirtColor = colorPickerList[0].color;
-    const tieColor = colorPickerList[1].color;
+    // const tieColor = colorPickerList[1].color;
     const palletsColor = colorPickerList[2].color;
-    tieRef.current.material.color = new Color(tieColor);
+    // tieRef.current.material.color = new Color(tieColor);
     shirtRef.current.material.color = new Color(shirtColor);
     palletsRef.current.material.color = new Color(palletsColor);
   }, [colorPickerList]);
 
   // const [position, setPosition] = useState([0, -0.4, 6.05]);
-  const [position, setPosition] = useState([0.4, -0.4, 6.05]);
+  const [position, setPosition] = useState([0, -0.4, 6.05]);
   const [rotation, setRotation] = useState([1.5, 0, 0]);
 
   useEffect(() => {
@@ -77,7 +77,8 @@ const Model = (props) => {
   );
 
   // Text Properties
-  const { text } = useTextStore();
+  const { text, textScale, textAspect, textPosition, fontSize } =
+    useTextStore();
   const textDecalRef = useRef();
 
   return (
@@ -121,8 +122,8 @@ const Model = (props) => {
                 {...bind()}
                 onPointerEnter={toggleHovered}
                 onPointerLeave={toggleHovered}
-                scale={[0.4, 0.2, 1.4]}
-                // debug={true}
+                scale={textScale}
+                debug={true}
                 position={position}
                 rotation={rotation}
                 origin={[0, 0, 0]}
@@ -138,13 +139,17 @@ const Model = (props) => {
                     <PerspectiveCamera
                       makeDefault
                       manual
-                      aspect={0.9 / 0.25}
-                      position={[0, 0, 2]}
+                      aspect={textAspect}
+                      position={textPosition}
                     />
-                    {/* <color attach="background" args={["#af2040"]} /> */}
+                    <color attach="background" args={["#af2040"]} />
                     <ambientLight intensity={Math.PI} />
                     <directionalLight position={[10, 10, 5]} />
-                    <Text rotation={[0, 0, 0]} fontSize={2} color="black">
+                    <Text
+                      rotation={[0, 0, 0]}
+                      fontSize={fontSize}
+                      color="black"
+                    >
                       {text}
                     </Text>
                   </RenderTexture>
@@ -153,13 +158,13 @@ const Model = (props) => {
             )}
           </mesh>
 
-          <mesh
+          {/* <mesh
             ref={tieRef}
             geometry={nodes.Object_4.geometry}
             material={tieMaterial}
           >
             <meshStandardMaterial />
-          </mesh>
+          </mesh> */}
         </group>
       </group>
     </>

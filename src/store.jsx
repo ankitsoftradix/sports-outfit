@@ -34,8 +34,33 @@ export const useLogoStore = create((set) => ({
 
 export const useTextStore = create((set) => ({
   text: "",
-  updateText: (upcomingTxt) =>
+  textViewScale: 0.6,
+  textScale: [0.6, 0.6 / 1.5, 1.4],
+  textAspect: 1,
+  textPosition: [0, 0, 2],
+  fontSize: 2,
+  updateText: (text) =>
     set(() => ({
-      text: upcomingTxt,
+      text,
+    })),
+  updateTextViewScale: (scale) =>
+    set(() => ({
+      textViewScale: scale,
+    })),
+  updateTextScale: (scale) =>
+    set(() => ({
+      textScale: scale,
+    })),
+  updateTextAspect: (aspect) =>
+    set(() => ({
+      textAspect: aspect,
+    })),
+  updateTextPosition: (position) =>
+    set(() => ({
+      textAspect: position,
+    })),
+  updateFontSize: (fontSize) =>
+    set(() => ({
+      fontSize,
     })),
 }));
