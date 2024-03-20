@@ -48,7 +48,7 @@ const Model = (props) => {
   }, [colorPickerList]);
 
   // const [position, setPosition] = useState([0, -0.4, 6.05]);
-  const [position, setPosition] = useState([0, -0.4, 6.05]);
+  const [position, setPosition] = useState([0.4, -0.4, 6.05]);
   const [rotation, setRotation] = useState([1.5, 0, 0]);
 
   useEffect(() => {
@@ -121,7 +121,7 @@ const Model = (props) => {
                 {...bind()}
                 onPointerEnter={toggleHovered}
                 onPointerLeave={toggleHovered}
-                scale={[scale, 0.2, 1.4]}
+                scale={[0.4, 0.2, 1.4]}
                 // debug={true}
                 position={position}
                 rotation={rotation}
@@ -139,13 +139,12 @@ const Model = (props) => {
                       makeDefault
                       manual
                       aspect={0.9 / 0.25}
-                      position={[0, 0, 5]}
+                      position={[0, 0, 2]}
                     />
-                    <color attach="background" args={["#af2040"]} />
-
+                    {/* <color attach="background" args={["#af2040"]} /> */}
                     <ambientLight intensity={Math.PI} />
                     <directionalLight position={[10, 10, 5]} />
-                    <Text rotation={[0, 0, 0]} fontSize={5} color="black">
+                    <Text rotation={[0, 0, 0]} fontSize={2} color="black">
                       {text}
                     </Text>
                   </RenderTexture>
